@@ -12,8 +12,11 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
+        // Load default values
+        Config.loadShared(new Config.Builder());
+
         try {
-            InetSocketAddress address = new InetSocketAddress("127.0.0.1", 3500);
+            InetSocketAddress address = new InetSocketAddress(Config.getShared().getIp(), Config.getShared().getPort());
             ServerSocket serverSocket = new ServerSocket();
             serverSocket.bind(address);
             ConnectionManager.startServer(serverSocket);
