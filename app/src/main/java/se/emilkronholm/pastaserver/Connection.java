@@ -16,7 +16,7 @@ public class Connection {
     static void HandleConnection(Socket client) {
         try {
             // We set timeout to 10000 ms to make sure no bad clients will hog a Connection forever
-            client.setSoTimeout(10000);
+            client.setSoTimeout(Config.getShared().getTimeout());
         } catch (SocketException ex) {
             ex.printStackTrace();
         }
