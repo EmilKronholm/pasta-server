@@ -13,12 +13,13 @@ class RequestTest {
         String requestRaw = "GET / HTTP/1.1\r\n\r\n";
         Request request = Request.HttpParser.fromRawString(requestRaw);
 
-        assertEquals(request.protocol, "HTTP/1.1");
-        assertEquals(request.requestType, "GET");
-        assertEquals(request.route, "/");
+        assertEquals("HTTP/1.1", request.protocol);
+        assertEquals("GET", request.requestType);
+        assertEquals("/", request.route);
 
         assertTrue(request.isOk);
         assertEquals(0, request.contentLength);
+
         assertNull(request.contentType);
         assertNull(request.cookie);
         assertNull(request.userAgent);
@@ -46,6 +47,7 @@ class RequestTest {
         assertEquals("JavaTest", request.userAgent);
         assertEquals(27, request.contentLength);
         assertEquals("{\"username\":\"emil\",\"pw\":\"x\"}", request.body);
+
         assertTrue(request.isOk);
     }
 
@@ -63,9 +65,12 @@ class RequestTest {
         assertEquals("/submit", request.route);
         assertEquals("text/plain", request.contentType);
         assertEquals(0, request.contentLength); // default/fallback to 0
+
         assertNull(request.cookie);
         assertNull(request.userAgent);
+        
         assertEquals("hello", request.body); // body still present
+
         assertTrue(request.isOk);
     }
 
@@ -76,6 +81,7 @@ class RequestTest {
         Request request = Request.HttpParser.fromRawString(requestRaw);
 
         assertFalse(request.isOk);
+
         assertNull(request.protocol);
         assertNull(request.requestType);
         assertNull(request.route);
@@ -83,6 +89,7 @@ class RequestTest {
         assertNull(request.cookie);
         assertNull(request.userAgent);
         assertNull(request.body);
+
         assertEquals(0, request.contentLength);
     }
 }
