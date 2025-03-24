@@ -15,7 +15,7 @@ class RequestTest {
 
         assertEquals("HTTP/1.1", request.protocol);
         assertEquals("GET", request.requestType);
-        assertEquals("/", request.route);
+        assertEquals("/", request.path);
 
         assertTrue(request.isOk);
         assertEquals(0, request.contentLength);
@@ -41,7 +41,7 @@ class RequestTest {
 
         assertEquals("HTTP/1.1", request.protocol);
         assertEquals("POST", request.requestType);
-        assertEquals("/login", request.route);
+        assertEquals("/login", request.path);
         assertEquals("application/json", request.contentType);
         assertEquals("session=abc123", request.cookie);
         assertEquals("JavaTest", request.userAgent);
@@ -62,7 +62,7 @@ class RequestTest {
 
         assertEquals("HTTP/1.1", request.protocol);
         assertEquals("POST", request.requestType);
-        assertEquals("/submit", request.route);
+        assertEquals("/submit", request.path);
         assertEquals("text/plain", request.contentType);
         assertEquals(0, request.contentLength); // default/fallback to 0
 
@@ -84,7 +84,7 @@ class RequestTest {
 
         assertNull(request.protocol);
         assertNull(request.requestType);
-        assertNull(request.route);
+        assertNull(request.path);
         assertNull(request.contentType);
         assertNull(request.cookie);
         assertNull(request.userAgent);
